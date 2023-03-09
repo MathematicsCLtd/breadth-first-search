@@ -1,22 +1,29 @@
 # Breadth-first search (BFS)
 
-A common brute-force algorithm that works well for a small number of nodes. It begins at the graph root and explores every node that attaches to the root. Then it goes to the next level, exploring each level until it reaches the end.
+A common brute-force algorithm that works well for a small number of nodes. It begins at the graph root and then explores every node down a single path to the end. It then backtracks to explore the path not taken until it reaches the root again.
 
 ## Implementation
 
-This algorithm takes in a graph and returns a set of all visited vertices. It uses a deque to keep track of the vertices to visit and a set to keep track of the visited vertices. The graph parameter should be a dictionary where the keys are the vertices and the values are sets of adjacent vertices.
+This algorithm takes in a graph represented as an adjacency list (a dictionary where the keys are nodes and the values are lists of their neighbors), a starting node, and an optional set of visited nodes. It returns a list of visited nodes in the order they were visited.
+
+The algorithm works by first marking the starting node as visited and adding it to the result list. It then recursively visits all unvisited neighbors of the starting node by calling dfs on each of them and extending the result list with the visited nodes in the order they were visited.
+
+The visited set is used to avoid revisiting nodes and getting stuck in cycles. It is initialized to an empty set if not provided as an argument.
 
 ## Testing
-* The first test case tests a disconnected graph where the BFS algorithm should visit all vertices.
-* The second test case tests a graph with a single node where the BFS algorithm should only visit that node.
-* The third test case tests a regular graph where the BFS algorithm should visit all vertices reachable from the starting vertex.
+* The first test case checks a simple example with a directed acyclic graph where the DFS starts from node 1 and visits all nodes in the graph.
+* The second test case checks a more complex example with an undirected graph where the DFS starts from node 'A' and visits all nodes in the graph.
+* The third test case checks a graph with a cycle, where the DFS starts from node 'A' and visits all nodes in the graph, while avoiding cycles.
 
 ## Visualizations
-Run locally to see the graphs used in the first and third test cases.
+Run locally to see the graphs used in the test cases.
 
 ## Use Cases
-* Shortest Path Finding: BFS is often used to find the shortest path between two vertices in a graph. For example, BFS can be used to find the shortest path between two locations on a map, where the vertices represent locations and the edges represent roads or paths connecting them.
-* Web Crawling: BFS is used in web crawling algorithms to discover and index web pages. The algorithm starts from a given web page and explores its neighboring pages, then moves on to explore the neighbors of the neighbors, and so on. This helps search engines like Google to find and index all the web pages on the internet.
-* Social Network Analysis: BFS can be used to analyze social networks such as Facebook, Twitter, and LinkedIn. In a social network, vertices represent users, and edges represent relationships between users (such as friendships or following relationships). BFS can be used to explore a user's network of friends or followers, and to find the shortest path between two users in the network.
-* Game AI: BFS can be used in game AI to search for the best move in a game. For example, in a chess game, BFS can be used to search for the best move by exploring all possible moves from the current position and all possible responses from the opponent.
-* Network Routing: BFS can be used in network routing algorithms to find the shortest path between two nodes in a network. For example, BFS can be used to find the shortest path between two computers in a network or the shortest path between two cities in a transportation network.
+* Finding connected components: DFS can be used to find all the connected components in an undirected graph. Each connected component is a group of nodes that are reachable from each other.
+* Detecting cycles: DFS can be used to detect cycles in a graph. If a back edge is encountered during the traversal, it indicates the presence of a cycle in the graph.
+* Topological sorting: DFS can be used to perform a topological sort of a directed acyclic graph (DAG). A topological sort is an ordering of the nodes in a DAG such that for every directed edge (u, v), node u comes before node v in the ordering.
+* Pathfinding: DFS can be used to find a path between two nodes in a graph. If a path exists between the two nodes, DFS will find it.
+* Finding strongly connected components: DFS can be used to find all the strongly connected components in a directed graph. A strongly connected component is a group of nodes that are reachable from each other by following directed edges.
+* Solving puzzles: DFS can be used to solve puzzles that can be modeled as a graph. For example, DFS can be used to solve mazes, Sudoku puzzles, and crossword puzzles.
+* Data processing: DFS can be used to traverse hierarchical data structures such as trees and XML documents. It is often used in compilers and interpreters to generate code or interpret programs.
+* Web crawling: DFS can be used to crawl the web by following hyperlinks between web pages.
