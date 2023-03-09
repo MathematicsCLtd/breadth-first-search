@@ -1,6 +1,6 @@
 # Breadth-first search (BFS)
 
-A common brute-force algorithm that works well for a small number of nodes.
+A common brute-force algorithm that works well for a small number of nodes. It begins at the graph root and explores every node that attaches to the root. Then it goes to the next level, exploring each level until it reaches the end.
 
 ## Implementation
 
